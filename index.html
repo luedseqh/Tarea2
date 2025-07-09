@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Luis Quesada">
+
+<title>Tarea2</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="index_files/libs/clipboard/clipboard.min.js"></script>
+<script src="index_files/libs/quarto-html/quarto.js"></script>
+<script src="index_files/libs/quarto-html/popper.min.js"></script>
+<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="index_files/libs/quarto-html/anchor.min.js"></script>
+<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="index_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="index_files/libs/bootstrap/bootstrap-1bc8a17f135ab3d594c857e9f48e611b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="index_files/libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+
+<script src="index_files/libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<script src="index_files/libs/plotly-binding-4.11.0/plotly.js"></script>
+
+<script src="index_files/libs/typedarray-0.1/typedarray.min.js"></script>
+
+<script src="index_files/libs/jquery-3.5.1/jquery.min.js"></script>
+
+<link href="index_files/libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+
+<script src="index_files/libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+
+<link href="index_files/libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+
+<script src="index_files/libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+
+<script src="index_files/libs/plotly-locale-es-2.11.1/es.js"></script>
+
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Tarea2</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Luis Quesada </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="carga-de-paquetes" class="level1">
+<h1>Carga de paquetes</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="carga-de-datos" class="level1">
+<h1>Carga de datos</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>paises <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://raw.githubusercontent.com/sigenr/2025-i/refs/heads/main/datos/natural-earth/paises.csv"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="gráficos-con-ggplot2" class="level1">
+<h1>Gráficos con ggplot2</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de dispersión de PIB per cápita vs esperanza de vida al nacer</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># coloreado por continente</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>paises <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> GDP_PC, <span class="at">y =</span> LIFE_EXPECTANCY, <span class="at">color =</span> CONTINENT)) <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> comma, <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="cn">NA</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>paises <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(CONTINENT <span class="sc">==</span> <span class="st">'North America'</span> <span class="sc">|</span> CONTINENT <span class="sc">==</span> <span class="st">'Europe'</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> GDP_PC, <span class="at">y =</span> LIFE_EXPECTANCY, <span class="at">color =</span> CONTINENT)) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> comma, <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="cn">NA</span>)) <span class="sc">+</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> comma, <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">90</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de dispersión de PIB per cápita vs esperanza de vida al nacer</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># en África y Europa coloreado por continente</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># + curva de tendencia</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>paises <span class="sc">|&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(CONTINENT <span class="sc">==</span> <span class="st">'North America'</span> <span class="sc">|</span> CONTINENT <span class="sc">==</span> <span class="st">'South America'</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> GDP_PC, <span class="at">y =</span> LIFE_EXPECTANCY, <span class="at">color =</span> CONTINENT)) <span class="sc">+</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> comma, <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="cn">NA</span>)) <span class="sc">+</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> comma, <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">90</span>)) <span class="sc">+</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"PIB per cápita vs esperanza de vida al nacer por continente"</span>) <span class="sc">+</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"PIB per cápita  (USD)"</span>) <span class="sc">+</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Esperanza de vida (años)"</span>) <span class="sc">+</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"Datos de África y Europa"</span>, </span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Fuentes: Natural Earth y Banco Mundial"</span>,</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Continente"</span>) <span class="sc">+</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_economist</span>() <span class="co"># estilo de ggthemes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="uso-de-graficos-interactivos-con-ploty" class="level1">
+<h1>Uso de graficos interactivos con ploty</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de dispersión PIB per cápita vs esperanza de vida</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>grafico_dispersion_ggplot2 <span class="ot">&lt;-</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  paises <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> GDP_PC, <span class="at">y =</span> LIFE_EXPECTANCY, <span class="at">color =</span> CONTINENT)) <span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">text =</span> <span class="fu">paste0</span>(</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>      <span class="st">"País: "</span>,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>      NAME,</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>      <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>      <span class="st">"PIB per cápita: "</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>      scales<span class="sc">::</span><span class="fu">comma</span>(<span class="fu">round</span>(GDP_PC, <span class="dv">2</span>)),</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>      <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Esperanza de vida: "</span>,</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">round</span>(LIFE_EXPECTANCY, <span class="dv">2</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">+</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> comma, <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="cn">NA</span>)) <span class="sc">+</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> comma, <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">90</span>)) <span class="sc">+</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"PIB per cápita vs esperanza de vida al nacer"</span>) <span class="sc">+</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"PIB per cápita (USD)"</span>) <span class="sc">+</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Esperanza de vida (años)"</span>) <span class="sc">+</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">caption =</span> <span class="st">"Fuentes: Natural Earth y Banco Mundial"</span>, <span class="at">color =</span> <span class="st">"Continente"</span>) <span class="sc">+</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_economist</span>()  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in geom_point(aes(text = paste0("País: ", NAME, "\n", "PIB per cápita:
+", : Ignoring unknown aesthetics: text</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de dispersión plotly</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(grafico_dispersion_ggplot2, <span class="at">tooltip =</span> <span class="st">"text"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">config</span>(<span class="at">locale =</span> <span class="st">'es'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 11 rows containing non-finite outside the scale range
+(`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-ca301be24f5b20bbd57f" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-ca301be24f5b20bbd57f">{"x":{"data":[{"x":[855.75559251965115,1084.6029144703186,462.99578997604402,1816.5452323719192,411.51452644667944,1089.1560334584349,3499.890800110436,3281.9905171037908,1503.5151089178171,2279.8962477148998,580.70826982844801,4957.2464552440742,6001.389726848146,7685.9268055310458,3317.3948001657841,1305.0199232631039,527.43972871602796,962.78781255955755,621.78801929932797,467.84266577593922,712.70012326561243,3414.2733883890055,339.57136063366482,2276.3167554707197,878.97918158741334,1446.8258072782371,2229.8565622324468,1219.3725849283685,2790.7046894616378,7961.1164141812051,1463.9340989308091,709.48065313858342,3973.9573410982639,503.55601238172807,3894.1583270187175,261.21842960198012,819.9921596268299,794.33753108284657,1117.976650474199,1507.4365115986084,7766.8061782793629,553.86546487312808,786.85608820425466,679.25654443265751,2202.0947169978053,697.06109878485438,3019.2032872271589,1679.2997143422799,8131.3523885939821,777.78052277414633,523.33565708603487,1369.1610862089633,1943.6797857302283,3602.2439015520017],"y":[65.644999999999996,55.567,56.106999999999999,62.055,62.898000000000003,66.781999999999996,56.106999999999999,74.972999999999999,null,63.052999999999997,59.743000000000002,58.058999999999997,61.479999999999997,72.150999999999996,74.263000000000005,61.802999999999997,60.411000000000001,58.984999999999999,61.100000000000001,54.476999999999997,null,62.859000000000002,66.603999999999999,58.915999999999997,59.417000000000002,67.912999999999997,53.633000000000003,59.954000000000001,61.929000000000002,65.912999999999997,59.390999999999998,52.997,77.129000000000005,59.625,56.359999999999999,61.976999999999997,67.129000000000005,63.637999999999998,53.036000000000001,60.957999999999998,65.694000000000003,62.079999999999998,59.765999999999998,61.588000000000001,63.945,59.860999999999997,70.159000000000006,64.691000000000003,61.189999999999998,62.905999999999999,65.230000000000004,63.68,68.793999999999997,74.721999999999994],"text":["País: Ethiopia<br />PIB per cápita: 855.8<br />Esperanza de vida: 65.64","País: S. Sudan<br />PIB per cápita: 1,084.6<br />Esperanza de vida: 55.57","País: Somalia<br />PIB per cápita: 463.0<br />Esperanza de vida: 56.11","País: Kenya<br />PIB per cápita: 1,816.6<br />Esperanza de vida: 62.06","País: Malawi<br />PIB per cápita: 411.5<br />Esperanza de vida: 62.9","País: Tanzania<br />PIB per cápita: 1,089.2<br />Esperanza de vida: 66.78","País: Somaliland<br />PIB per cápita: 3,499.9<br />Esperanza de vida: 56.11","País: Morocco<br />PIB per cápita: 3,282.0<br />Esperanza de vida: 74.97","País: W. Sahara<br />PIB per cápita: 1,503.5<br />Esperanza de vida: NA","País: Congo<br />PIB per cápita: 2,279.9<br />Esperanza de vida: 63.05","País: Dem. Rep. Congo<br />PIB per cápita: 580.7<br />Esperanza de vida: 59.74","País: Namibia<br />PIB per cápita: 4,957.2<br />Esperanza de vida: 58.06","País: South Africa<br />PIB per cápita: 6,001.4<br />Esperanza de vida: 61.48","País: Libya<br />PIB per cápita: 7,685.9<br />Esperanza de vida: 72.15","País: Tunisia<br />PIB per cápita: 3,317.4<br />Esperanza de vida: 74.26","País: Zambia<br />PIB per cápita: 1,305.0<br />Esperanza de vida: 61.8","País: Sierra Leone<br />PIB per cápita: 527.4<br />Esperanza de vida: 60.41","País: Guinea<br />PIB per cápita: 962.8<br />Esperanza de vida: 58.98","País: Liberia<br />PIB per cápita: 621.8<br />Esperanza de vida: 61.1","País: Central African Rep.<br />PIB per cápita: 467.8<br />Esperanza de vida: 54.48","País: Sudan<br />PIB per cápita: 712.7<br />Esperanza de vida: NA","País: Djibouti<br />PIB per cápita: 3,414.3<br />Esperanza de vida: 62.86","País: Eritrea<br />PIB per cápita: 339.6<br />Esperanza de vida: 66.6","País: Côte d'Ivoire<br />PIB per cápita: 2,276.3<br />Esperanza de vida: 58.92","País: Mali<br />PIB per cápita: 879.0<br />Esperanza de vida: 59.42","País: Senegal<br />PIB per cápita: 1,446.8<br />Esperanza de vida: 67.91","País: Nigeria<br />PIB per cápita: 2,229.9<br />Esperanza de vida: 53.63","País: Benin<br />PIB per cápita: 1,219.4<br />Esperanza de vida: 59.95","País: Angola<br />PIB per cápita: 2,790.7<br />Esperanza de vida: 61.93","País: Botswana<br />PIB per cápita: 7,961.1<br />Esperanza de vida: 65.91","País: Zimbabwe<br />PIB per cápita: 1,463.9<br />Esperanza de vida: 59.39","País: Chad<br />PIB per cápita: 709.5<br />Esperanza de vida: 53","País: Algeria<br />PIB per cápita: 3,974.0<br />Esperanza de vida: 77.13","País: Mozambique<br />PIB per cápita: 503.6<br />Esperanza de vida: 59.62","País: eSwatini<br />PIB per cápita: 3,894.2<br />Esperanza de vida: 56.36","País: Burundi<br />PIB per cápita: 261.2<br />Esperanza de vida: 61.98","País: Rwanda<br />PIB per cápita: 820.0<br />Esperanza de vida: 67.13","País: Uganda<br />PIB per cápita: 794.3<br />Esperanza de vida: 63.64","País: Lesotho<br />PIB per cápita: 1,118.0<br />Esperanza de vida: 53.04","País: Cameroon<br />PIB per cápita: 1,507.4<br />Esperanza de vida: 60.96","País: Gabon<br />PIB per cápita: 7,766.8<br />Esperanza de vida: 65.69","País: Niger<br />PIB per cápita: 553.9<br />Esperanza de vida: 62.08","País: Burkina Faso<br />PIB per cápita: 786.9<br />Esperanza de vida: 59.77","País: Togo<br />PIB per cápita: 679.3<br />Esperanza de vida: 61.59","País: Ghana<br />PIB per cápita: 2,202.1<br />Esperanza de vida: 63.94","País: Guinea-Bissau<br />PIB per cápita: 697.1<br />Esperanza de vida: 59.86","País: Egypt<br />PIB per cápita: 3,019.2<br />Esperanza de vida: 70.16","País: Mauritania<br />PIB per cápita: 1,679.3<br />Esperanza de vida: 64.69","País: Eq. Guinea<br />PIB per cápita: 8,131.4<br />Esperanza de vida: 61.19","País: Gambia<br />PIB per cápita: 777.8<br />Esperanza de vida: 62.91","País: Madagascar<br />PIB per cápita: 523.3<br />Esperanza de vida: 65.23","País: Comoros<br />PIB per cápita: 1,369.2<br />Esperanza de vida: 63.68","País: São Tomé and Principe<br />PIB per cápita: 1,943.7<br />Esperanza de vida: 68.79","País: Cabo Verde<br />PIB per cápita: 3,602.2<br />Esperanza de vida: 74.72"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"Africa","legendgroup":"Africa","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[200000],"y":[null],"text":"País: Antarctica<br />PIB per cápita: 200,000.0<br />Esperanza de vida: NA","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(205,150,0,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(205,150,0,1)"}},"hoveron":"points","name":"Antarctica","legendgroup":"Antarctica","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[4135.5663778228081,11414.195473101425,20814.717477003946,2099.5987439431351,10500.649513928936,29910.458164387273,7583.6021723779859,5789.6437257233174,31846.213987333525,1558.4722623691171,3315.4586865017586,15342.957749026831,1724.8326044909793,9812.3413019277923,870.72034406542286,4339.6202429207542,2715.2734981755425,1643.0977460282454,43103.295635272152,2038.7692357877395,4793.5224643177044,9126.5553604676224,2534.7812351148032,1309.2970310830274,4622.4622861240596,5955.1079180467623,5475.5109474639876,62087.867271501695,23139.77419747939,1284.6978572995699,7806.7282798440374,32000.31946125142,1559.794574203921,31085.77495182155,1407.7973674735065,1855.7382654351488,507.10069782797081,6859.7087657219536,4405.3997280060157,1071.0374567745278,774.33167813836144,11042.944785276071,28000,3485.079513449436,3853.0477457230654,47818.309770829372,40246.87583284705,65233.189955271868,23503.934992797829],"y":[68.25,76.260000000000005,81.888999999999996,67.744,78.587000000000003,82.700000000000003,74.415999999999997,72.299999999999997,82.680487804878098,73.578000000000003,72.228999999999999,73.935000000000002,71.674000000000007,74.439999999999998,71.287999999999997,72.667000000000002,74.579999999999998,69.896000000000001,79.195999999999998,71.587000000000003,73.488,78.474999999999994,68.998999999999995,72.048780487804905,73.372,71.335999999999999,74.555999999999997,81.558999999999997,77.905000000000001,66.430999999999997,79.680000000000007,80.263999999999996,69.055999999999997,74.551000000000002,67.256,73.697999999999993,62.878999999999998,69.409999999999997,74.215000000000003,70.483999999999995,63.719999999999999,81.888999999999996,81.888999999999996,72.186999999999998,76.609999999999999,null,83.996341463414595,82.895121951219494,79.245999999999995],"text":["País: Indonesia<br />PIB per cápita: 4,135.6<br />Esperanza de vida: 68.25","País: Malaysia<br />PIB per cápita: 11,414.2<br />Esperanza de vida: 76.26","País: Cyprus<br />PIB per cápita: 20,814.7<br />Esperanza de vida: 81.89","País: India<br />PIB per cápita: 2,099.6<br />Esperanza de vida: 67.74","País: China<br />PIB per cápita: 10,500.6<br />Esperanza de vida: 78.59","País: Israel<br />PIB per cápita: 29,910.5<br />Esperanza de vida: 82.7","País: Lebanon<br />PIB per cápita: 7,583.6<br />Esperanza de vida: 74.42","País: Syria<br />PIB per cápita: 5,789.6<br />Esperanza de vida: 72.3","País: South Korea<br />PIB per cápita: 31,846.2<br />Esperanza de vida: 82.68","País: North Korea<br />PIB per cápita: 1,558.5<br />Esperanza de vida: 73.58","País: Bhutan<br />PIB per cápita: 3,315.5<br />Esperanza de vida: 72.23","País: Oman<br />PIB per cápita: 15,343.0<br />Esperanza de vida: 73.94","País: Uzbekistan<br />PIB per cápita: 1,724.8<br />Esperanza de vida: 71.67","País: Kazakhstan<br />PIB per cápita: 9,812.3<br />Esperanza de vida: 74.44","País: Tajikistan<br />PIB per cápita: 870.7<br />Esperanza de vida: 71.29","País: Mongolia<br />PIB per cápita: 4,339.6<br />Esperanza de vida: 72.67","País: Vietnam<br />PIB per cápita: 2,715.3<br />Esperanza de vida: 74.58","País: Cambodia<br />PIB per cápita: 1,643.1<br />Esperanza de vida: 69.9","País: United Arab Emirates<br />PIB per cápita: 43,103.3<br />Esperanza de vida: 79.2","País: Georgia<br />PIB per cápita: 2,038.8<br />Esperanza de vida: 71.59","País: Azerbaijan<br />PIB per cápita: 4,793.5<br />Esperanza de vida: 73.49","País: Turkey<br />PIB per cápita: 9,126.6<br />Esperanza de vida: 78.47","País: Laos<br />PIB per cápita: 2,534.8<br />Esperanza de vida: 69","País: Kyrgyzstan<br />PIB per cápita: 1,309.3<br />Esperanza de vida: 72.05","País: Armenia<br />PIB per cápita: 4,622.5<br />Esperanza de vida: 73.37","País: Iraq<br />PIB per cápita: 5,955.1<br />Esperanza de vida: 71.34","País: Iran<br />PIB per cápita: 5,475.5<br />Esperanza de vida: 74.56","País: Qatar<br />PIB per cápita: 62,087.9<br />Esperanza de vida: 81.56","País: Saudi Arabia<br />PIB per cápita: 23,139.8<br />Esperanza de vida: 77.9","País: Pakistan<br />PIB per cápita: 1,284.7<br />Esperanza de vida: 66.43","País: Thailand<br />PIB per cápita: 7,806.7<br />Esperanza de vida: 79.68","País: Kuwait<br />PIB per cápita: 32,000.3<br />Esperanza de vida: 80.26","País: Timor-Leste<br />PIB per cápita: 1,559.8<br />Esperanza de vida: 69.06","País: Brunei<br />PIB per cápita: 31,085.8<br />Esperanza de vida: 74.55","País: Myanmar<br />PIB per cápita: 1,407.8<br />Esperanza de vida: 67.26","País: Bangladesh<br />PIB per cápita: 1,855.7<br />Esperanza de vida: 73.7","País: Afghanistan<br />PIB per cápita: 507.1<br />Esperanza de vida: 62.88","País: Turkmenistan<br />PIB per cápita: 6,859.7<br />Esperanza de vida: 69.41","País: Jordan<br />PIB per cápita: 4,405.4<br />Esperanza de vida: 74.22","País: Nepal<br />PIB per cápita: 1,071.0<br />Esperanza de vida: 70.48","País: Yemen<br />PIB per cápita: 774.3<br />Esperanza de vida: 63.72","País: N. Cyprus<br />PIB per cápita: 11,042.9<br />Esperanza de vida: 81.89","País: Cyprus U.N. Buffer Zone<br />PIB per cápita: 28,000.0<br />Esperanza de vida: 81.89","País: Philippines<br />PIB per cápita: 3,485.1<br />Esperanza de vida: 72.19","País: Sri Lanka<br />PIB per cápita: 3,853.0<br />Esperanza de vida: 76.61","País: Taiwan<br />PIB per cápita: 47,818.3<br />Esperanza de vida: NA","País: Japan<br />PIB per cápita: 40,246.9<br />Esperanza de vida: 84","País: Singapore<br />PIB per cápita: 65,233.2<br />Esperanza de vida: 82.9","País: Bahrain<br />PIB per cápita: 23,503.9<br />Esperanza de vida: 79.25"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(124,174,0,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(124,174,0,1)"}},"hoveron":"points","name":"Asia","legendgroup":"Asia","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[42501.354345964275,40371.986126939191,3464.6944456992433,6663.2470167498059,51843.819693736645,19601.743046973566,11774.152374948775,23494.548914126899,46445.242388626903,23723.230236923238,17828.417039202966,75419.566872654221,51614.936162753358,40665.215907612663,114703.11148966925,46420.624073987805,6022.1967410925772,5353.1806385767459,4417.4495387482666,29600.367110911851,60145.800019448106,12919.506705329217,16731.817126169237,19266.152103208005,15692.501573706204,78660.812507437091,19582.46495392729,50137.618652647325,33228.234267363718,81993.676377566342,180856.9399510771,7411.8337359025772,14935.955746773205,25946.07331798811,9828.0316656490959,48877.731836975785,184477.97967354479,40885.639470068185,8908.0057929362829,6108.4519842471982,23252.050238100175,4503.2485625388272,null,66944.726594393229,29819.776267126625],"y":[82.0585365853659,82.229268292682903,68.587926829268298,73.111463414634201,81.714634146341496,75.792682926829301,72.545609756097605,79.0292682926829,80.705609756097601,77.943902439024399,74.580487804878004,82.560975609756099,83.109756097561004,81.187804878048794,83.046341463414606,81.697560975609804,74.424878048780499,76.832999999999998,75.482195121951193,83.082926829268303,81.304878048780495,75.304878048780495,76.017073170731706,77.065853658536597,77.304878048780495,83.056097560975601,80.636585365853705,81.092682926829298,82.900000000000006,83.453658536585394,84.319512195122002,75.482195121951193,77.575609756097606,81.282926829268305,74.360975609756096,null,null,null,76.187804878048794,75.293000000000006,null,68.620999999999995,null,82.170731707317103,82.700000000000003],"text":["País: United Kingdom<br />PIB per cápita: 42,501.3<br />Esperanza de vida: 82.06","País: France<br />PIB per cápita: 40,372.0<br />Esperanza de vida: 82.23","País: Ukraine<br />PIB per cápita: 3,464.7<br />Esperanza de vida: 68.59","País: Belarus<br />PIB per cápita: 6,663.2<br />Esperanza de vida: 73.11","País: Netherlands<br />PIB per cápita: 51,843.8<br />Esperanza de vida: 81.71","País: Lithuania<br />PIB per cápita: 19,601.7<br />Esperanza de vida: 75.79","País: Russia<br />PIB per cápita: 11,774.1<br />Esperanza de vida: 72.55","País: Czechia<br />PIB per cápita: 23,494.5<br />Esperanza de vida: 79.03","País: Germany<br />PIB per cápita: 46,445.2<br />Esperanza de vida: 80.71","País: Estonia<br />PIB per cápita: 23,723.2<br />Esperanza de vida: 77.94","País: Latvia<br />PIB per cápita: 17,828.4<br />Esperanza de vida: 74.58","País: Norway<br />PIB per cápita: 75,419.6<br />Esperanza de vida: 82.56","País: Sweden<br />PIB per cápita: 51,614.9<br />Esperanza de vida: 83.11","País: Finland<br />PIB per cápita: 40,665.2<br />Esperanza de vida: 81.19","País: Luxembourg<br />PIB per cápita: 114,703.1<br />Esperanza de vida: 83.05","País: Belgium<br />PIB per cápita: 46,420.6<br />Esperanza de vida: 81.7","País: North Macedonia<br />PIB per cápita: 6,022.2<br />Esperanza de vida: 74.42","País: Albania<br />PIB per cápita: 5,353.2<br />Esperanza de vida: 76.83","País: Kosovo<br />PIB per cápita: 4,417.4<br />Esperanza de vida: 75.48","País: Spain<br />PIB per cápita: 29,600.4<br />Esperanza de vida: 83.08","País: Denmark<br />PIB per cápita: 60,145.8<br />Esperanza de vida: 81.3","País: Romania<br />PIB per cápita: 12,919.5<br />Esperanza de vida: 75.3","País: Hungary<br />PIB per cápita: 16,731.8<br />Esperanza de vida: 76.02","País: Slovakia<br />PIB per cápita: 19,266.2<br />Esperanza de vida: 77.07","País: Poland<br />PIB per cápita: 15,692.5<br />Esperanza de vida: 77.3","País: Ireland<br />PIB per cápita: 78,660.8<br />Esperanza de vida: 83.06","País: Greece<br />PIB per cápita: 19,582.5<br />Esperanza de vida: 80.64","País: Austria<br />PIB per cápita: 50,137.6<br />Esperanza de vida: 81.09","País: Italy<br />PIB per cápita: 33,228.2<br />Esperanza de vida: 82.9","País: Switzerland<br />PIB per cápita: 81,993.7<br />Esperanza de vida: 83.45","País: Liechtenstein<br />PIB per cápita: 180,856.9<br />Esperanza de vida: 84.32","País: Serbia<br />PIB per cápita: 7,411.8<br />Esperanza de vida: 75.48","País: Croatia<br />PIB per cápita: 14,936.0<br />Esperanza de vida: 77.58","País: Slovenia<br />PIB per cápita: 25,946.1<br />Esperanza de vida: 81.28","País: Bulgaria<br />PIB per cápita: 9,828.0<br />Esperanza de vida: 74.36","País: San Marino<br />PIB per cápita: 48,877.7<br />Esperanza de vida: NA","País: Monaco<br />PIB per cápita: 184,478.0<br />Esperanza de vida: NA","País: Andorra<br />PIB per cápita: 40,885.6<br />Esperanza de vida: NA","País: Montenegro<br />PIB per cápita: 8,908.0<br />Esperanza de vida: 76.19","País: Bosnia and Herz.<br />PIB per cápita: 6,108.4<br />Esperanza de vida: 75.29","País: Portugal<br />PIB per cápita: 23,252.0<br />Esperanza de vida: NA","País: Moldova<br />PIB per cápita: 4,503.2<br />Esperanza de vida: 68.62","País: Vatican<br />PIB per cápita: -120,000.0<br />Esperanza de vida: NA","País: Iceland<br />PIB per cápita: 66,944.7<br />Esperanza de vida: 82.17","País: Malta<br />PIB per cápita: 29,819.8<br />Esperanza de vida: 82.7"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,190,103,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,190,103,1)"}},"hoveron":"points","name":"Europe","legendgroup":"Europe","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[12243.735142576779,1912.7639102394285,1272.4764289545387,8282.0884484323342,4187.1508609288558,4619.9638569585477,8825.4422757770044,2574.8716129716072,64966.827350410647,46194.708478181878,9946.0296966513088,4813.591800242345,15730.827641701671,34861.688088281357,17397.469341700522,10803.282054944955,7451.0123068297935,18148.244926400141,11608.950161387384,8104.9465240641712,17102.905743528492,19930.347882045651,5582.2396727039741],"y":[77.319999999999993,74.614999999999995,63.728000000000002,74.170000000000002,71.474999999999994,68.674000000000007,78.155000000000001,70.727999999999994,77.434146341463403,81.295609756097605,74.831999999999994,70.962000000000003,76.825999999999993,74.358000000000004,74.707999999999998,75.334999999999994,68.971999999999994,77.706000000000003,71.293999999999997,72.980999999999995,79.236000000000004,72.027000000000001,70.629000000000005],"text":["País: Costa Rica<br />PIB per cápita: 12,243.7<br />Esperanza de vida: 77.32","País: Nicaragua<br />PIB per cápita: 1,912.8<br />Esperanza de vida: 74.61","País: Haiti<br />PIB per cápita: 1,272.5<br />Esperanza de vida: 63.73","País: Dominican Rep.<br />PIB per cápita: 8,282.1<br />Esperanza de vida: 74.17","País: El Salvador<br />PIB per cápita: 4,187.1<br />Esperanza de vida: 71.47","País: Guatemala<br />PIB per cápita: 4,620.0<br />Esperanza de vida: 68.67","País: Cuba<br />PIB per cápita: 8,825.4<br />Esperanza de vida: 78.16","País: Honduras<br />PIB per cápita: 2,574.9<br />Esperanza de vida: 70.73","País: United States of America<br />PIB per cápita: 64,966.8<br />Esperanza de vida: 77.43","País: Canada<br />PIB per cápita: 46,194.7<br />Esperanza de vida: 81.3","País: Mexico<br />PIB per cápita: 9,946.0<br />Esperanza de vida: 74.83","País: Belize<br />PIB per cápita: 4,813.6<br />Esperanza de vida: 70.96","País: Panama<br />PIB per cápita: 15,730.8<br />Esperanza de vida: 76.83","País: Bahamas<br />PIB per cápita: 34,861.7<br />Esperanza de vida: 74.36","País: Trinidad and Tobago<br />PIB per cápita: 17,397.5<br />Esperanza de vida: 74.71","País: Grenada<br />PIB per cápita: 10,803.3<br />Esperanza de vida: 75.33","País: St. Vin. and Gren.<br />PIB per cápita: 7,451.0<br />Esperanza de vida: 68.97","País: Barbados<br />PIB per cápita: 18,148.2<br />Esperanza de vida: 77.71","País: Saint Lucia<br />PIB per cápita: 11,609.0<br />Esperanza de vida: 71.29","País: Dominica<br />PIB per cápita: 8,105.0<br />Esperanza de vida: 72.98","País: Antigua and Barb.<br />PIB per cápita: 17,102.9<br />Esperanza de vida: 79.24","País: St. Kitts and Nevis<br />PIB per cápita: 19,930.3<br />Esperanza de vida: 72.03","País: Jamaica<br />PIB per cápita: 5,582.2<br />Esperanza de vida: 70.63"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,191,196,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,191,196,1)"}},"hoveron":"points","name":"North America","legendgroup":"North America","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2829.1581155156573,55053.069575397283,6175.6070264384753,41872.187844134358,1649.57570191997,3759.0787705601201,4899.8028594943253,4322.7446384267641,2372.268494811316,4035.7204190279926,9379.2226373102294,3523.2614330272813,3114.5583929679005,14882.274544646823],"y":[null,83.200000000000003,68.311999999999998,82.760975609756102,67.661000000000001,65.146000000000001,71.269999999999996,72.597999999999999,70.742000000000004,64.853999999999999,64.013999999999996,70.924999999999997,70.492000000000004,null],"text":["País: Papua New Guinea<br />PIB per cápita: 2,829.2<br />Esperanza de vida: NA","País: Australia<br />PIB per cápita: 55,053.1<br />Esperanza de vida: 83.2","País: Fiji<br />PIB per cápita: 6,175.6<br />Esperanza de vida: 68.31","País: New Zealand<br />PIB per cápita: 41,872.2<br />Esperanza de vida: 82.76","País: Kiribati<br />PIB per cápita: 1,649.6<br />Esperanza de vida: 67.66","País: Marshall Is.<br />PIB per cápita: 3,759.1<br />Esperanza de vida: 65.15","País: Tonga<br />PIB per cápita: 4,899.8<br />Esperanza de vida: 71.27","País: Samoa<br />PIB per cápita: 4,322.7<br />Esperanza de vida: 72.6","País: Solomon Is.<br />PIB per cápita: 2,372.3<br />Esperanza de vida: 70.74","País: Tuvalu<br />PIB per cápita: 4,035.7<br />Esperanza de vida: 64.85","País: Nauru<br />PIB per cápita: 9,379.2<br />Esperanza de vida: 64.01","País: Micronesia<br />PIB per cápita: 3,523.3<br />Esperanza de vida: 70.92","País: Vanuatu<br />PIB per cápita: 3,114.6<br />Esperanza de vida: 70.49","País: Palau<br />PIB per cápita: 14,882.3<br />Esperanza de vida: NA"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,169,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,169,255,1)"}},"hoveron":"points","name":"Oceania","legendgroup":"Oceania","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[17444.302176696543,11098.900143871706,10626.175951543732],"y":[73.848780487804902,73.514634146341507,80.838999999999999],"text":["País: Seychelles<br />PIB per cápita: 17,444.3<br />Esperanza de vida: 73.85","País: Mauritius<br />PIB per cápita: 11,098.9<br />Esperanza de vida: 73.51","País: Maldives<br />PIB per cápita: 10,626.2<br />Esperanza de vida: 80.84"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(199,124,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(199,124,255,1)"}},"hoveron":"points","name":"Seven seas (open ocean)","legendgroup":"Seven seas (open ocean)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[14896.445437688548,3552.0407188333288,6977.694220378904,9912.2778596769767,6359.1938255444529,6608.6161126058105,8717.1860849515197,16189.86323039263,6183.785548492885,6428.656749340671,5414.7581223501111,16915.482274774477],"y":[79.519000000000005,64.927999999999997,73.385000000000005,76.063999999999993,70.289000000000001,65.989000000000004,73.424999999999997,78,77.894000000000005,73.659000000000006,70.474999999999994,71.105000000000004],"text":["País: Chile<br />PIB per cápita: 14,896.4<br />Esperanza de vida: 79.52","País: Bolivia<br />PIB per cápita: 3,552.0<br />Esperanza de vida: 64.93","País: Peru<br />PIB per cápita: 6,977.7<br />Esperanza de vida: 73.39","País: Argentina<br />PIB per cápita: 9,912.3<br />Esperanza de vida: 76.06","País: Suriname<br />PIB per cápita: 6,359.2<br />Esperanza de vida: 70.29","País: Guyana<br />PIB per cápita: 6,608.6<br />Esperanza de vida: 65.99","País: Brazil<br />PIB per cápita: 8,717.2<br />Esperanza de vida: 73.42","País: Uruguay<br />PIB per cápita: 16,189.9<br />Esperanza de vida: 78","País: Ecuador<br />PIB per cápita: 6,183.8<br />Esperanza de vida: 77.89","País: Colombia<br />PIB per cápita: 6,428.7<br />Esperanza de vida: 73.66","País: Paraguay<br />PIB per cápita: 5,414.8<br />Esperanza de vida: 70.47","País: Venezuela<br />PIB per cápita: 16,915.5<br />Esperanza de vida: 71.11"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(255,97,204,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(255,97,204,1)"}},"hoveron":"points","name":"South America","legendgroup":"South America","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[261.21842960198012,360.84037844998011,460.46232729798015,560.0842761459802,659.70622499398019,759.32817384198017,858.95012268998028,958.57207153798026,1058.1940203859804,1157.8159692339802,1257.4379180819801,1357.0598669299802,1456.6818157779803,1556.3037646259804,1655.9257134739805,1755.5476623219802,1855.1696111699803,1954.7915600179804,2054.4135088659805,2154.0354577139806,2253.6574065619802,2353.2793554099803,2452.9013042579804,2552.5232531059805,2652.1452019539806,2751.7671508019803,2851.3890996499804,2951.0110484979805,3050.6329973459806,3150.2549461939807,3249.8768950419803,3349.4988438899804,3449.1207927379805,3548.7427415859806,3648.3646904339807,3747.9866392819804,3847.6085881299805,3947.2305369779806,4046.8524858259807,4146.4744346739808,4246.0963835219809,4345.718332369981,4445.3402812179811,4544.9622300659812,4644.5841789139813,4744.2061277619814,4843.8280766099815,4943.4500254579816,5043.0719743059817,5142.6939231539809,5242.315872001981,5341.9378208499811,5441.5597696979812,5541.1817185459813,5640.8036673939814,5740.4256162419815,5840.0475650899816,5939.6695139379817,6039.2914627859818,6138.913411633981,6238.5353604819811,6338.1573093299812,6437.7792581779813,6537.4012070259814,6637.0231558739815,6736.6451047219816,6836.2670535699817,6935.8890024179818,7035.5109512659819,7135.132900113982,7234.7548489619812,7334.3767978099813,7433.9987466579814,7533.6206955059815,7633.2426443539816,7732.8645932019817,7832.4865420499818,7932.1084908979819,8031.730439745982,8131.3523885939821],"y":[61.138496738832252,61.21917267724735,61.299848615662455,61.380524554077553,61.461200492492651,61.541876430907749,61.622552369322847,61.703228307737945,61.783904246153043,61.86458018456814,61.945256122983238,62.025932061398336,62.106607999813441,62.187283938228539,62.267959876643637,62.348635815058735,62.429311753473833,62.509987691888931,62.590663630304029,62.671339568719127,62.752015507134224,62.832691445549322,62.913367383964427,62.994043322379525,63.074719260794623,63.155395199209721,63.236071137624819,63.316747076039917,63.397423014455015,63.478098952870113,63.558774891285211,63.639450829700309,63.720126768115414,63.800802706530511,63.881478644945609,63.962154583360707,64.042830521775812,64.12350646019091,64.204182398606008,64.284858337021106,64.365534275436204,64.446210213851302,64.5268861522664,64.607562090681498,64.688238029096595,64.768913967511693,64.849589905926791,64.930265844341889,65.010941782756987,65.091617721172085,65.172293659587183,65.252969598002281,65.333645536417379,65.414321474832477,65.494997413247575,65.575673351662687,65.656349290077785,65.737025228492882,65.81770116690798,65.898377105323078,65.979053043738176,66.059728982153274,66.140404920568372,66.22108085898347,66.301756797398568,66.382432735813666,66.463108674228764,66.543784612643861,66.624460551058959,66.705136489474057,66.785812427889155,66.866488366304253,66.947164304719351,67.027840243134449,67.108516181549561,67.189192119964659,67.269868058379757,67.350543996794855,67.431219935209953,67.511895873625051],"text":"","type":"scatter","mode":"lines","name":"Africa","line":{"width":3.7795275590551185,"color":"rgba(248,118,109,1)","dash":"solid"},"hoveron":"points","legendgroup":"Africa","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[507.10069782797081,1326.4182833652353,2145.7358689025,2965.0534544397642,3784.3710399770289,4603.6886255142936,5423.0062110515582,6242.3237965888229,7061.6413821260876,7880.9589676633523,8700.276553200616,9519.5941387378807,10338.911724275145,11158.22930981241,11977.546895349675,12796.864480886939,13616.182066424204,14435.499651961469,15254.817237498733,16074.134823035998,16893.452408573259,17712.769994110524,18532.087579647789,19351.405165185053,20170.722750722318,20990.040336259583,21809.357921796847,22628.675507334112,23447.993092871377,24267.310678408641,25086.628263945906,25905.945849483171,26725.263435020435,27544.5810205577,28363.898606094965,29183.216191632229,30002.533777169494,30821.851362706759,31641.168948244023,32460.486533781288,33279.804119318549,34099.121704855817,34918.439290393078,35737.756875930347,36557.074461467608,37376.392047004876,38195.709632542137,39015.027218079405,39834.344803616666,40653.662389153935,41472.979974691196,42292.297560228464,43111.615145765725,43930.932731302993,44750.250316840255,45569.567902377523,46388.885487914784,47208.203073452052,48027.520658989313,48846.838244526582,49666.155830063843,50485.473415601111,51304.791001138372,52124.10858667564,52943.426172212901,53762.743757750162,54582.061343287431,55401.378928824692,56220.69651436196,57040.014099899221,57859.331685436489,58678.64927097375,59497.966856511019,60317.28444204828,61136.602027585548,61955.919613122809,62775.237198660077,63594.554784197338,64413.872369734607,65233.189955271868],"y":[71.496129039449642,71.697180275396533,71.898231511343425,72.099282747290317,72.300333983237209,72.501385219184101,72.702436455130993,72.903487691077885,73.104538927024777,73.305590162971669,73.506641398918561,73.707692634865452,73.908743870812344,74.10979510675925,74.310846342706142,74.511897578653034,74.712948814599926,74.914000050546818,75.11505128649371,75.316102522440602,75.517153758387494,75.718204994334386,75.919256230281277,76.120307466228169,76.321358702175061,76.522409938121953,76.723461174068845,76.924512410015737,77.125563645962629,77.326614881909521,77.527666117856413,77.728717353803304,77.929768589750211,78.130819825697102,78.331871061643994,78.532922297590886,78.733973533537778,78.93502476948467,79.136076005431562,79.337127241378454,79.538178477325346,79.739229713272238,79.94028094921913,80.141332185166021,80.342383421112913,80.543434657059805,80.744485893006697,80.945537128953589,81.146588364900481,81.347639600847373,81.548690836794265,81.749742072741157,81.950793308688048,82.151844544634955,82.352895780581846,82.553947016528738,82.75499825247563,82.956049488422522,83.157100724369414,83.358151960316306,83.559203196263198,83.76025443221009,83.961305668156982,84.162356904103873,84.363408140050765,84.564459375997657,84.765510611944549,84.966561847891441,85.167613083838333,85.368664319785225,85.569715555732131,85.770766791679023,85.971818027625915,86.172869263572807,86.373920499519699,86.57497173546659,86.776022971413482,86.977074207360374,87.178125443307266,87.379176679254158],"text":"","type":"scatter","mode":"lines","name":"Asia","line":{"width":3.7795275590551185,"color":"rgba(124,174,0,1)","dash":"solid"},"hoveron":"points","legendgroup":"Asia","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[3464.6944456992433,5710.1659077926342,7955.6373698860243,10201.108831979414,12446.580294072806,14692.051756166195,16937.523218259586,19182.994680352978,21428.466142446367,23673.937604539758,25919.409066633147,28164.880528726539,30410.351990819931,32655.823452913319,34901.294915006714,37146.766377100103,39392.237839193491,41637.709301286879,43883.180763380275,46128.652225473663,48374.123687567051,50619.595149660447,52865.066611753835,55110.538073847223,57356.009535940619,59601.480998034007,61846.952460127395,64092.423922220783,66337.895384314179,68583.366846407574,70828.83830850097,73074.309770594351,75319.781232687747,77565.252694781142,79810.724156874523,82056.195618967919,84301.667081061314,86547.138543154695,88792.610005248091,91038.081467341486,93283.552929434867,95529.024391528263,97774.495853621658,100019.96731571504,102265.43877780843,104510.91023990183,106756.38170199521,109001.85316408861,111247.324626182,113492.79608827538,115738.26755036878,117983.73901246216,120229.21047455556,122474.68193664895,124720.15339874233,126965.62486083573,129211.09632292912,131456.56778502249,133702.0392471159,135947.51070920928,138192.98217130269,140438.45363339607,142683.92509548945,144929.39655758286,147174.86801967624,149420.33948176962,151665.81094386303,153911.28240595642,156156.7538680498,158402.22533014321,160647.69679223659,162893.16825432997,165138.63971642338,167384.11117851676,169629.58264061014,171875.05410270355,174120.52556479693,176365.99702689031,178611.46848898372,180856.9399510771],"y":[76.029125490530873,76.214670576600184,76.400215662669495,76.585760748738807,76.771305834808118,76.956850920877429,77.14239600694674,77.327941093016051,77.513486179085362,77.699031265154673,77.884576351223984,78.070121437293295,78.255666523362606,78.441211609431917,78.626756695501228,78.81230178157054,78.997846867639851,79.183391953709162,79.368937039778473,79.554482125847784,79.740027211917095,79.92557229798642,80.111117384055731,80.296662470125042,80.482207556194354,80.667752642263665,80.853297728332976,81.038842814402287,81.224387900471598,81.409932986540909,81.59547807261022,81.781023158679531,81.966568244748842,82.152113330818153,82.337658416887464,82.523203502956775,82.708748589026087,82.894293675095398,83.079838761164709,83.26538384723402,83.450928933303331,83.636474019372656,83.822019105441967,84.007564191511278,84.193109277580589,84.3786543636499,84.564199449719212,84.749744535788523,84.935289621857834,85.120834707927145,85.306379793996456,85.491924880065767,85.677469966135078,85.863015052204389,86.0485601382737,86.234105224343011,86.419650310412322,86.605195396481633,86.790740482550945,86.976285568620256,87.161830654689567,87.347375740758878,87.532920826828189,87.7184659128975,87.904010998966811,88.089556085036122,88.275101171105447,88.460646257174758,88.64619134324407,88.831736429313381,89.017281515382692,89.202826601452003,89.388371687521314,89.573916773590625,89.759461859659936,89.945006945729247,null,null,null,null],"text":"","type":"scatter","mode":"lines","name":"Europe","line":{"width":3.7795275590551185,"color":"rgba(0,190,103,1)","dash":"solid"},"hoveron":"points","legendgroup":"Europe","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1272.4764289545387,2078.7340355552487,2884.9916421559592,3691.2492487566692,4497.5068553573801,5303.7644619580897,6110.0220685587992,6916.2796751595106,7722.5372817602201,8528.7948883609315,9335.0524949616411,10141.310101562351,10947.56770816306,11753.825314763772,12560.082921364481,13366.340527965192,14172.598134565902,14978.855741166612,15785.113347767323,16591.370954368034,17397.628560968744,18203.886167569453,19010.143774170163,19816.401380770872,20622.658987371582,21428.916593972295,22235.174200573005,23041.431807173714,23847.689413774424,24653.947020375133,25460.204626975847,26266.462233576556,27072.719840177266,27878.977446777975,28685.235053378685,29491.492659979398,30297.750266580108,31104.007873180817,31910.265479781527,32716.523086382236,33522.780692982953,34329.038299583663,35135.295906184372,35941.553512785082,36747.811119385791,37554.068725986501,38360.32633258721,39166.58393918792,39972.841545788629,40779.099152389346,41585.356758990056,42391.614365590765,43197.871972191475,44004.129578792184,44810.387185392894,45616.644791993604,46422.902398594313,47229.160005195023,48035.417611795732,48841.675218396449,49647.932824997159,50454.190431597868,51260.448038198578,52066.705644799287,52872.963251399997,53679.220858000706,54485.478464601416,55291.736071202125,56097.993677802835,56904.251284403545,57710.508891004261,58516.766497604971,59323.02410420568,60129.28171080639,60935.5393174071,61741.796924007809,62548.054530608519,63354.312137209228,64160.569743809938,64966.827350410647],"y":[71.836549343879057,71.955194663150209,72.073839982421362,72.192485301692514,72.311130620963667,72.429775940234819,72.548421259505972,72.667066578777124,72.785711898048277,72.904357217319429,73.023002536590582,73.141647855861734,73.260293175132887,73.378938494404039,73.497583813675192,73.616229132946344,73.734874452217497,73.853519771488649,73.972165090759802,74.090810410030969,74.209455729302121,74.328101048573274,74.446746367844426,74.565391687115579,74.684037006386731,74.802682325657884,74.921327644929036,75.039972964200189,75.158618283471341,75.277263602742494,75.395908922013646,75.514554241284799,75.633199560555951,75.751844879827104,75.870490199098256,75.989135518369409,76.107780837640561,76.226426156911714,76.345071476182866,76.463716795454019,76.582362114725171,76.701007433996324,76.819652753267476,76.938298072538629,77.056943391809796,77.175588711080934,77.294234030352101,77.412879349623253,77.531524668894406,77.650169988165558,77.768815307436711,77.887460626707863,78.006105945979016,78.124751265250168,78.243396584521321,78.362041903792473,78.480687223063626,78.599332542334778,78.717977861605931,78.836623180877083,78.955268500148236,79.073913819419388,79.192559138690541,79.311204457961693,79.429849777232846,79.548495096503999,79.667140415775151,79.785785735046304,79.904431054317456,80.023076373588609,80.141721692859761,80.260367012130928,80.37901233140208,80.497657650673233,80.616302969944385,80.734948289215538,80.85359360848669,80.972238927757843,81.090884247028995,81.209529566300148],"text":"","type":"scatter","mode":"lines","name":"North America","line":{"width":3.7795275590551185,"color":"rgba(0,191,196,1)","dash":"solid"},"hoveron":"points","legendgroup":"North America","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1649.57570191997,2325.5692952551258,3001.5628885902815,3677.5564819254378,4353.5500752605931,5029.5436685957493,5705.5372619309055,6381.5308552660608,7057.524448601217,7733.5180419363733,8409.5116352715286,9085.5052286066857,9761.498821941841,10437.492415276996,11113.486008612152,11789.479601947309,12465.473195282464,13141.466788617619,13817.460381952777,14493.453975287932,15169.447568623087,15845.441161958244,16521.434755293398,17197.428348628557,17873.421941963712,18549.415535298867,19225.409128634023,19901.402721969178,20577.396315304333,21253.389908639492,21929.383501974648,22605.377095309803,23281.370688644958,23957.364281980113,24633.357875315269,25309.351468650424,25985.345061985583,26661.338655320738,27337.332248655894,28013.325841991049,28689.319435326204,29365.31302866136,30041.306621996519,30717.300215331674,31393.293808666829,32069.287402001984,32745.28099533714,33421.274588672299,34097.26818200745,34773.261775342602,35449.255368677768,36125.24896201292,36801.242555348072,37477.236148683238,38153.22974201839,38829.223335353541,39505.216928688693,40181.210522023859,40857.204115359011,41533.197708694162,42209.191302029329,42885.18489536448,43561.178488699632,44237.172082034784,44913.16567536995,45589.159268705102,46265.152862040253,46941.146455375419,47617.140048710571,48293.133642045723,48969.127235380874,49645.120828716041,50321.114422051192,50997.108015386344,51673.10160872151,52349.095202056662,53025.088795391814,53701.08238872698,54377.075982062132,55053.069575397283],"y":[67.921467175873332,68.128807249984831,68.336147324096345,68.543487398207844,68.750827472319344,68.958167546430843,69.165507620542343,69.372847694653856,69.580187768765356,69.787527842876855,69.994867916988355,70.202207991099854,70.409548065211368,70.616888139322867,70.824228213434367,71.031568287545866,71.238908361657366,71.446248435768865,71.653588509880379,71.860928583991878,72.068268658103378,72.275608732214877,72.482948806326377,72.69028888043789,72.89762895454939,73.104969028660889,73.312309102772389,73.519649176883888,73.726989250995388,73.934329325106901,74.141669399218401,74.3490094733299,74.5563495474414,74.763689621552913,74.971029695664413,75.178369769775912,75.385709843887412,75.593049917998911,75.800389992110411,76.007730066221924,76.215070140333424,76.422410214444923,76.629750288556423,76.837090362667922,77.044430436779436,77.251770510890935,77.459110585002435,77.666450659113934,77.873790733225434,78.081130807336933,78.288470881448447,78.495810955559946,78.703151029671446,78.910491103782959,79.117831177894459,79.325171252005958,79.532511326117458,79.739851400228957,79.947191474340457,80.154531548451956,80.36187162256347,80.569211696674969,80.776551770786469,80.983891844897968,81.191231919009482,81.398571993120981,81.605912067232481,81.81325214134398,82.02059221545548,82.227932289566979,82.435272363678479,82.642612437789992,82.849952511901492,83.057292586012991,83.264632660124491,83.471972734236004,83.679312808347504,83.886652882459003,84.093992956570503,84.301333030682002],"text":"","type":"scatter","mode":"lines","name":"Oceania","line":{"width":3.7795275590551185,"color":"rgba(0,169,255,1)","dash":"solid"},"hoveron":"points","legendgroup":"Oceania","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[10626.175951543732,10712.48134679883,10798.78674205393,10885.092137309028,10971.397532564128,11057.702927819226,11144.008323074326,11230.313718329424,11316.619113584522,11402.924508839622,11489.22990409472,11575.53529934982,11661.840694604918,11748.146089860016,11834.451485115116,11920.756880370214,12007.062275625314,12093.367670880412,12179.67306613551,12265.97846139061,12352.283856645709,12438.589251900808,12524.894647155907,12611.200042411005,12697.505437666105,12783.810832921203,12870.116228176303,12956.421623431401,13042.727018686499,13129.032413941599,13215.337809196699,13301.643204451797,13387.948599706895,13474.253994961995,13560.559390217093,13646.864785472193,13733.170180727291,13819.475575982389,13905.780971237489,13992.086366492587,14078.391761747687,14164.697157002785,14251.002552257884,14337.307947512983,14423.613342768082,14509.918738023182,14596.22413327828,14682.529528533378,14768.834923788478,14855.140319043578,14941.445714298676,15027.751109553774,15114.056504808872,15200.361900063972,15286.667295319072,15372.97269057417,15459.278085829268,15545.583481084366,15631.888876339466,15718.194271594566,15804.499666849664,15890.805062104762,15977.11045735986,16063.41585261496,16149.72124787006,16236.026643125158,16322.332038380257,16408.637433635355,16494.942828890453,16581.248224145555,16667.553619400653,16753.859014655751,16840.164409910853,16926.469805165951,17012.775200421049,17099.080595676147,17185.385990931245,17271.691386186343,17357.996781441445,17444.302176696543],"y":[77.436718718375587,77.38809335435441,77.339467990333233,77.290842626312042,77.242217262290865,77.193591898269688,77.14496653424851,77.096341170227319,77.047715806206142,76.999090442184965,76.950465078163774,76.901839714142596,76.853214350121419,76.804588986100228,76.755963622079051,76.707338258057874,76.658712894036682,76.610087530015505,76.561462165994328,76.512836801973151,76.46421143795196,76.415586073930783,76.366960709909605,76.318335345888414,76.269709981867237,76.22108461784606,76.172459253824869,76.123833889803691,76.075208525782514,76.026583161761323,75.977957797740146,75.929332433718969,75.880707069697792,75.8320817056766,75.783456341655423,75.734830977634232,75.686205613613055,75.637580249591878,75.588954885570701,75.540329521549509,75.491704157528332,75.443078793507155,75.394453429485964,75.345828065464787,75.297202701443609,75.248577337422418,75.199951973401241,75.151326609380064,75.102701245358872,75.054075881337695,75.005450517316518,74.956825153295341,74.90819978927415,74.859574425252973,74.810949061231796,74.762323697210604,74.713698333189427,74.66507296916825,74.616447605147059,74.567822241125882,74.519196877104704,74.470571513083513,74.421946149062336,74.373320785041159,74.324695421019982,74.27607005699879,74.227444692977613,74.178819328956436,74.130193964935245,74.081568600914068,74.032943236892891,73.984317872871699,73.935692508850522,73.887067144829345,73.838441780808154,73.789816416786977,73.741191052765799,73.692565688744622,73.643940324723431,73.595314960702254],"text":"","type":"scatter","mode":"lines","name":"Seven seas (open ocean)","line":{"width":3.7795275590551185,"color":"rgba(199,124,255,1)","dash":"solid"},"hoveron":"points","legendgroup":"Seven seas (open ocean)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[3552.0407188333288,3721.1982068832167,3890.3556949331046,4059.5131829829925,4228.6706710328808,4397.8281590827683,4566.9856471326566,4736.1431351825449,4905.3006232324324,5074.4581112823198,5243.6155993322081,5412.7730873820965,5581.9305754319839,5751.0880634818723,5920.2455515317597,6089.403039581648,6258.5605276315364,6427.7180156814238,6596.8755037313113,6766.0329917811996,6935.1904798310879,7104.3479678809763,7273.5054559308637,7442.6629439807512,7611.8204320306395,7780.9779200805278,7950.1354081304162,8119.2928961803027,8288.450384230191,8457.6078722800794,8626.7653603299677,8795.9228483798543,8965.0803364297426,9134.2378244796309,9303.3953125295193,9472.5528005794076,9641.7102886292942,9810.8677766791825,9980.0252647290708,10149.182752778959,10318.340240828846,10487.497728878734,10656.655216928622,10825.812704978511,10994.970193028399,11164.127681078286,11333.285169128174,11502.442657178062,11671.600145227951,11840.757633277837,12009.915121327726,12179.072609377614,12348.230097427502,12517.387585477389,12686.545073527277,12855.702561577165,13024.860049627054,13194.017537676942,13363.175025726829,13532.332513776717,13701.490001826605,13870.647489876494,14039.80497792638,14208.962465976269,14378.119954026157,14547.277442076045,14716.434930125934,14885.59241817582,15054.749906225708,15223.907394275597,15393.064882325485,15562.222370375372,15731.37985842526,15900.537346475148,16069.694834525037,16238.852322574925,16408.009810624812,16577.1672986747,16746.324786724588,16915.482274774477],"y":[69.899575043693119,69.992340025462681,70.085105007232244,70.177869989001806,70.270634970771368,70.363399952540931,70.456164934310493,70.54892991608007,70.641694897849632,70.734459879619195,70.827224861388757,70.919989843158319,71.012754824927882,71.105519806697444,71.198284788467006,71.291049770236569,71.383814752006131,71.476579733775694,71.56934471554527,71.662109697314833,71.754874679084395,71.847639660853957,71.94040464262352,72.033169624393082,72.125934606162645,72.218699587932207,72.311464569701769,72.404229551471332,72.496994533240894,72.589759515010471,72.682524496780033,72.775289478549595,72.868054460319158,72.96081944208872,73.053584423858283,73.146349405627845,73.239114387397407,73.33187936916697,73.424644350936532,73.517409332706109,73.610174314475671,73.702939296245233,73.795704278014796,73.888469259784358,73.981234241553921,74.073999223323483,74.166764205093045,74.259529186862608,74.35229416863217,74.445059150401732,74.537824132171309,74.630589113940871,74.723354095710434,74.816119077479996,74.908884059249559,75.001649041019121,75.094414022788683,75.187179004558246,75.279943986327808,75.372708968097371,75.465473949866947,75.55823893163651,75.651003913406072,75.743768895175634,75.836533876945197,75.929298858714759,76.022063840484321,76.114828822253884,76.207593804023446,76.300358785793009,76.393123767562571,76.485888749332133,76.57865373110171,76.671418712871272,76.764183694640835,76.856948676410397,76.949713658179959,77.042478639949522,77.135243621719084,77.228008603488647],"text":"","type":"scatter","mode":"lines","name":"South America","line":{"width":3.7795275590551185,"color":"rgba(255,97,204,1)","dash":"solid"},"hoveron":"points","legendgroup":"South America","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[261.21842960198012,360.84037844998011,460.46232729798015,560.0842761459802,659.70622499398019,759.32817384198017,858.95012268998028,958.57207153798026,1058.1940203859804,1157.8159692339802,1257.4379180819801,1357.0598669299802,1456.6818157779803,1556.3037646259804,1655.9257134739805,1755.5476623219802,1855.1696111699803,1954.7915600179804,2054.4135088659805,2154.0354577139806,2253.6574065619802,2353.2793554099803,2452.9013042579804,2552.5232531059805,2652.1452019539806,2751.7671508019803,2851.3890996499804,2951.0110484979805,3050.6329973459806,3150.2549461939807,3249.8768950419803,3349.4988438899804,3449.1207927379805,3548.7427415859806,3648.3646904339807,3747.9866392819804,3847.6085881299805,3947.2305369779806,4046.8524858259807,4146.4744346739808,4246.0963835219809,4345.718332369981,4445.3402812179811,4544.9622300659812,4644.5841789139813,4744.2061277619814,4843.8280766099815,4943.4500254579816,5043.0719743059817,5142.6939231539809,5242.315872001981,5341.9378208499811,5441.5597696979812,5541.1817185459813,5640.8036673939814,5740.4256162419815,5840.0475650899816,5939.6695139379817,6039.2914627859818,6138.913411633981,6238.5353604819811,6338.1573093299812,6437.7792581779813,6537.4012070259814,6637.0231558739815,6736.6451047219816,6836.2670535699817,6935.8890024179818,7035.5109512659819,7135.132900113982,7234.7548489619812,7334.3767978099813,7433.9987466579814,7533.6206955059815,7633.2426443539816,7732.8645932019817,7832.4865420499818,7932.1084908979819,8031.730439745982,8131.3523885939821,8131.3523885939821,8031.730439745982,7932.1084908979819,7832.4865420499818,7732.8645932019817,7633.2426443539816,7533.6206955059815,7433.9987466579814,7334.3767978099813,7234.7548489619812,7135.132900113982,7035.5109512659819,6935.8890024179818,6836.2670535699817,6736.6451047219816,6637.0231558739815,6537.4012070259814,6437.7792581779813,6338.1573093299812,6238.5353604819811,6138.913411633981,6039.2914627859818,5939.6695139379817,5840.0475650899816,5740.4256162419815,5640.8036673939814,5541.1817185459813,5441.5597696979812,5341.9378208499811,5242.315872001981,5142.6939231539809,5043.0719743059817,4943.4500254579816,4843.8280766099815,4744.2061277619814,4644.5841789139813,4544.9622300659812,4445.3402812179811,4345.718332369981,4246.0963835219809,4146.4744346739808,4046.8524858259807,3947.2305369779806,3847.6085881299805,3747.9866392819804,3648.3646904339807,3548.7427415859806,3449.1207927379805,3349.4988438899804,3249.8768950419803,3150.2549461939807,3050.6329973459806,2951.0110484979805,2851.3890996499804,2751.7671508019803,2652.1452019539806,2552.5232531059805,2452.9013042579804,2353.2793554099803,2253.6574065619802,2154.0354577139806,2054.4135088659805,1954.7915600179804,1855.1696111699803,1755.5476623219802,1655.9257134739805,1556.3037646259804,1456.6818157779803,1357.0598669299802,1257.4379180819801,1157.8159692339802,1058.1940203859804,958.57207153798026,858.95012268998028,759.32817384198017,659.70622499398019,560.0842761459802,460.46232729798015,360.84037844998011,261.21842960198012,261.21842960198012],"y":[59.116879176857211,59.244869118952572,59.371384358383004,59.496317261656465,59.619553748971875,59.740973542651957,59.860450619753642,59.977853908762143,60.093048269037652,60.205895786633427,60.316257410136387,60.423994934398401,60.528973318030488,60.63106329276485,60.730144190850986,60.826106883487356,60.918856693111792,61.008316120214822,61.09442721620546,61.177153441600311,61.256480874979687,61.332418681225342,61.404998802791205,61.474274897958175,61.54032060693531,61.603227272739829,61.663101273686578,61.720061135833333,61.774234587824168,61.825755700714936,61.874762226416976,61.921393215465571,61.965786962341525,62.008079297770806,62.048402224169124,62.086882873341615,62.123642754440745,62.15879725420681,62.192455349583646,62.224719493797849,62.255685639906694,62.285443369827242,62.314076101330912,62.341661349980797,62.368271027220423,62.393971759629551,62.418825217672214,62.442888445061662,62.466214182180799,62.488851178871776,62.510844493399524,62.532235775559599,62.553063532795555,62.573363378864315,62.593168265084643,62.612508694558997,62.63141292000514,62.649907125995412,62.668015596498392,62.685760868667252,62.703163873832949,62.720244066649158,62.737019543307056,62.753507149697356,62.769722580349161,62.785680468923047,62.801394470982245,62.816877339712157,62.832140995206018,62.847196587884412,62.862054556568623,62.876724681683122,62.891216134020809,62.905537519466094,62.9196969200352,62.933701931560584,62.947559698316532,62.961276944855435,62.974860005299782,62.988314850312165,72.035476896937936,71.887579865120131,71.739811048734282,71.592176418442975,71.444682308368726,71.297335443063929,71.150142966802804,71.003112475417893,70.856252050925391,70.709570299209688,70.563076391063703,70.416780106911901,70.270691885575559,70.124822877475282,69.979185002704284,69.833791014447968,69.688654568269584,69.543790297829688,69.39921389765739,69.254942213643403,69.110993341978897,68.967386737317568,68.824143330990353,68.681285660150436,68.538838008766376,68.396826561410506,68.255279570800639,68.114227540039209,67.973703420444963,67.833742825774848,67.694384263472386,67.555669383333182,67.417643243622123,67.280354594181361,67.143856175393836,67.008205030972761,66.873462831382199,66.739696203201888,66.606977057875355,66.47538291096572,66.344997180244363,66.215909447628377,66.088215666175003,65.962018289110887,65.837426293379792,65.714555065722095,65.593526115290217,65.474466573889302,65.357508443935046,65.242787556153445,65.13044220502529,65.020611441085862,64.913433016246501,64.80904100156306,64.707563125679613,64.609117914653936,64.513811746800883,64.421735965137643,64.33296420987331,64.247550139288762,64.165525695837943,64.086900044402597,64.011659263563047,63.939766813835874,63.871164746630114,63.805775562436288,63.743504583692228,63.684242681596395,63.627869188398272,63.574254835830089,63.523264582502854,63.474760223268433,63.428602706713747,63.384654118892051,63.34277931916354,63.302847236013427,63.264731846498641,63.228312872941906,63.193476235542128,63.160114300807294,59.116879176857211],"text":"","type":"scatter","mode":"lines","line":{"width":3.7795275590551185,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(153,153,153,0.4)","hoveron":"points","hoverinfo":"x+y","name":"Africa","legendgroup":"Africa","showlegend":false,"xaxis":"x","yaxis":"y","frame":null},{"x":[507.10069782797081,1326.4182833652353,2145.7358689025,2965.0534544397642,3784.3710399770289,4603.6886255142936,5423.0062110515582,6242.3237965888229,7061.6413821260876,7880.9589676633523,8700.276553200616,9519.5941387378807,10338.911724275145,11158.22930981241,11977.546895349675,12796.864480886939,13616.182066424204,14435.499651961469,15254.817237498733,16074.134823035998,16893.452408573259,17712.769994110524,18532.087579647789,19351.405165185053,20170.722750722318,20990.040336259583,21809.357921796847,22628.675507334112,23447.993092871377,24267.310678408641,25086.628263945906,25905.945849483171,26725.263435020435,27544.5810205577,28363.898606094965,29183.216191632229,30002.533777169494,30821.851362706759,31641.168948244023,32460.486533781288,33279.804119318549,34099.121704855817,34918.439290393078,35737.756875930347,36557.074461467608,37376.392047004876,38195.709632542137,39015.027218079405,39834.344803616666,40653.662389153935,41472.979974691196,42292.297560228464,43111.615145765725,43930.932731302993,44750.250316840255,45569.567902377523,46388.885487914784,47208.203073452052,48027.520658989313,48846.838244526582,49666.155830063843,50485.473415601111,51304.791001138372,52124.10858667564,52943.426172212901,53762.743757750162,54582.061343287431,55401.378928824692,56220.69651436196,57040.014099899221,57859.331685436489,58678.64927097375,59497.966856511019,60317.28444204828,61136.602027585548,61955.919613122809,62775.237198660077,63594.554784197338,64413.872369734607,65233.189955271868,65233.189955271868,64413.872369734607,63594.554784197338,62775.237198660077,61955.919613122809,61136.602027585548,60317.28444204828,59497.966856511019,58678.64927097375,57859.331685436489,57040.014099899221,56220.69651436196,55401.378928824692,54582.061343287431,53762.743757750162,52943.426172212901,52124.10858667564,51304.791001138372,50485.473415601111,49666.155830063843,48846.838244526582,48027.520658989313,47208.203073452052,46388.885487914784,45569.567902377523,44750.250316840255,43930.932731302993,43111.615145765725,42292.297560228464,41472.979974691196,40653.662389153935,39834.344803616666,39015.027218079405,38195.709632542137,37376.392047004876,36557.074461467608,35737.756875930347,34918.439290393078,34099.121704855817,33279.804119318549,32460.486533781288,31641.168948244023,30821.851362706759,30002.533777169494,29183.216191632229,28363.898606094965,27544.5810205577,26725.263435020435,25905.945849483171,25086.628263945906,24267.310678408641,23447.993092871377,22628.675507334112,21809.357921796847,20990.040336259583,20170.722750722318,19351.405165185053,18532.087579647789,17712.769994110524,16893.452408573259,16074.134823035998,15254.817237498733,14435.499651961469,13616.182066424204,12796.864480886939,11977.546895349675,11158.22930981241,10338.911724275145,9519.5941387378807,8700.276553200616,7880.9589676633523,7061.6413821260876,6242.3237965888229,5423.0062110515582,4603.6886255142936,3784.3710399770289,2965.0534544397642,2145.7358689025,1326.4182833652353,507.10069782797081,507.10069782797081],"y":[70.167840151390294,70.401881493732475,70.634341649187434,70.865099892206544,71.094030479907062,71.321003903357621,71.545888554869322,71.768552835375189,71.988867696769233,72.206709574557834,72.421963618466066,72.634527077524112,72.844312649097219,73.051251567597092,73.255296197481513,73.456421913321378,73.654628098856037,73.849938172233422,74.042398635059527,74.232077233704445,74.419060397669909,74.603450170471135,74.785360868247153,74.964915691547205,75.142243482953404,75.317475776583819,75.490744234408766,75.662178516289515,75.831904590640534,76.000043462865094,76.1667102793091,76.332013754120013,76.496055863119693,76.65893175050995,76.820729799056082,76.981531820839407,77.141413332648526,77.30044388687304,77.458687434949383,77.616202705784048,77.773043586083546,77.929259493188667,78.084895733922494,78.239993845223566,78.394591914054033,78.548724875350189,78.702424787709603,78.855721087162323,79.008640819816449,79.161208854453747,79.313448076317968,79.465379563420498,79.617022746709068,79.768395555423865,79.919514548915743,80.070395036134499,80.221051183916941,80.371496115122596,80.5217419975816,80.671800124737217,80.821680988787364,80.971394347055323,81.120949282250933,81.270354257219395,81.419617164716698,81.568745372697023,81.717745765548671,81.866624781671675,82.015388447750055,82.164042410036402,82.312591962933666,82.46104207513109,82.609397413524505,82.757662365128496,82.905841057166782,83.05393737550898,83.201954981604814,83.349897328051938,83.497767672920503,83.645569092945109,null,null,null,null,null,89.841999941872615,89.588076162017117,89.334238641727325,89.080491508226956,88.826839148530595,88.573286229534048,88.31983771992661,88.066498914111207,87.813275458340428,87.560173379298291,87.307199115384833,87.054359550988352,86.80166205406303,86.549114517364856,86.296725403739032,86.044503795895395,85.792459451157228,85.540602861722448,85.288945321034319,85.037498996922977,84.78627701224795,84.535293533846044,84.284563870667029,84.034104582061815,83.783933597270561,83.534070347240998,83.284535909984513,83.035353170744855,82.786546998303791,82.538144438769422,82.290174928171794,82.042670525108477,81.795666164515765,81.549199933355808,81.303313368567146,81.05805177697286,80.813464575913741,80.5696056520963,80.326533734427031,80.084312774342365,79.843012324231907,79.602707900884255,79.363481316380728,79.125420953486596,78.888621956403725,78.653186300953948,78.419222701284724,78.186846303741959,77.956178113728924,77.727344099660087,77.500473921396718,77.275699240909134,77.053151592315402,76.832959818197637,76.615247119105078,76.400127811176759,76.187703937927893,75.978061928860214,75.771269530343815,75.56737324398469,75.366396487930771,75.168338645921409,74.97317509252747,74.780858192206793,74.591319179371055,74.404470751385503,74.22021015728032,74.038422546780581,73.858984355392664,73.681766535010581,73.506637486567357,73.333465602374091,73.162121373499417,72.992479057060592,72.824417927508989,70.167840151390294],"text":"","type":"scatter","mode":"lines","line":{"width":3.7795275590551185,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(153,153,153,0.4)","hoveron":"points","hoverinfo":"x+y","name":"Asia","legendgroup":"Asia","showlegend":false,"xaxis":"x","yaxis":"y","frame":null},{"x":[3464.6944456992433,5710.1659077926342,7955.6373698860243,10201.108831979414,12446.580294072806,14692.051756166195,16937.523218259586,19182.994680352978,21428.466142446367,23673.937604539758,25919.409066633147,28164.880528726539,30410.351990819931,32655.823452913319,34901.294915006714,37146.766377100103,39392.237839193491,41637.709301286879,43883.180763380275,46128.652225473663,48374.123687567051,50619.595149660447,52865.066611753835,55110.538073847223,57356.009535940619,59601.480998034007,61846.952460127395,64092.423922220783,66337.895384314179,68583.366846407574,70828.83830850097,73074.309770594351,75319.781232687747,77565.252694781142,79810.724156874523,82056.195618967919,84301.667081061314,86547.138543154695,88792.610005248091,91038.081467341486,93283.552929434867,95529.024391528263,97774.495853621658,100019.96731571504,102265.43877780843,104510.91023990183,106756.38170199521,109001.85316408861,111247.324626182,113492.79608827538,115738.26755036878,117983.73901246216,120229.21047455556,122474.68193664895,124720.15339874233,126965.62486083573,129211.09632292912,131456.56778502249,133702.0392471159,135947.51070920928,138192.98217130269,140438.45363339607,142683.92509548945,144929.39655758286,147174.86801967624,149420.33948176962,151665.81094386303,153911.28240595642,156156.7538680498,158402.22533014321,160647.69679223659,162893.16825432997,165138.63971642338,167384.11117851676,169629.58264061014,171875.05410270355,174120.52556479693,176365.99702689031,178611.46848898372,180856.9399510771,180856.9399510771,180856.9399510771,178611.46848898372,176365.99702689031,174120.52556479693,171875.05410270355,169629.58264061014,167384.11117851676,165138.63971642338,162893.16825432997,160647.69679223659,158402.22533014321,156156.7538680498,153911.28240595642,151665.81094386303,149420.33948176962,147174.86801967624,144929.39655758286,142683.92509548945,140438.45363339607,138192.98217130269,135947.51070920928,133702.0392471159,131456.56778502249,129211.09632292912,126965.62486083573,124720.15339874233,122474.68193664895,120229.21047455556,117983.73901246216,115738.26755036878,113492.79608827538,111247.324626182,109001.85316408861,106756.38170199521,104510.91023990183,102265.43877780843,100019.96731571504,97774.495853621658,95529.024391528263,93283.552929434867,91038.081467341486,88792.610005248091,86547.138543154695,84301.667081061314,82056.195618967919,79810.724156874523,77565.252694781142,75319.781232687747,73074.309770594351,70828.83830850097,68583.366846407574,66337.895384314179,64092.423922220783,61846.952460127395,59601.480998034007,57356.009535940619,55110.538073847223,52865.066611753835,50619.595149660447,48374.123687567051,46128.652225473663,43883.180763380275,41637.709301286879,39392.237839193491,37146.766377100103,34901.294915006714,32655.823452913319,30410.351990819931,28164.880528726539,25919.409066633147,23673.937604539758,21428.466142446367,19182.994680352978,16937.523218259586,14692.051756166195,12446.580294072806,10201.108831979414,7955.6373698860243,5710.1659077926342,3464.6944456992433,3464.6944456992433],"y":[74.730145827982895,74.956767974624483,75.181606120238939,75.404482226860935,75.62520455477275,75.843568921360216,76.059360945048482,76.272359476723651,76.482341368445475,76.689087622733837,76.892390799159983,77.092063337237676,77.287946216173665,77.479917165825327,77.667897534741144,77.851856967153935,78.031815262873451,78.207841160681468,78.380048215568223,78.548588328262511,78.71364374269389,78.875418410086922,79.034129538651811,79.189999956742255,79.343251680663073,79.494100852851943,79.642754037393644,79.789405740733386,79.934236962423967,80.077414561402392,80.21909123301036,80.359405917782624,80.498484495261593,80.636440648507303,80.773376814106243,80.909385156860239,81.044548527706127,81.178941378190032,81.312630615698737,81.445676391403381,81.578132818209227,81.710048619540345,81.841467712009276,81.972429726312754,82.102970471340399,82.233122346698138,82.362914708782554,82.49237419530435,82.621525012824264,82.750389191481659,82.878986810699701,83.007336199261289,83.135454112780366,83.263355891250143,83.391055599037415,83.518566149409409,83.645899415428673,83.773066328826786,83.900076968270866,84.02694063826263,84.153665939757232,84.280260833455401,84.406732696605687,84.533088374051189,84.659334224166173,84.785476160249758,84.911519687876066,85.037469938640697,85.163331700691302,85.289109446384643,85.414807357372894,85.540429347386905,85.665979082953612,85.791460002258177,85.916875332337668,86.042228104772434,86.167521170023278,86.292757210546085,86.417938752801888,86.543068178267276,86.543068178267276,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,89.925630498977881,89.681403996831023,89.437324464136481,89.193401205395972,88.949644299276613,88.706064677509985,88.462674213158635,88.21948581948979,87.976513560870245,87.733772777293211,87.49128022437263,87.249054230891403,87.007114876272695,86.765484190655869,86.524186380601662,86.28324808382078,86.042698656709803,85.802570498874658,85.562899419204967,85.323725048397435,85.085091303064658,84.84704690663068,84.609645972000763,84.372948650346046,84.137021849053312,83.901940019668686,83.667786013129003,83.434651994236091,83.202640399576438,82.97186491221008,82.742451411679426,82.514538838519229,82.288279888071187,82.063841419272308,81.841404431675386,81.621163431725634,81.403324983507829,81.188105229459651,80.975726185885918,80.7664106811403,80.560375923433057,80.357825863988722,80.158942746736855,79.96387847240625,79.772746595987144,79.585615856261313,79.402506053038508,79.223386830551547,79.048179537348915,78.876761903287985,78.708974907575509,78.544630989725249,78.383522709308451,78.225431068844998,78.070132920394641,77.917407114843485,77.767039270616678,77.618825205100052,77.472573178575885,77.328105153078852,74.730145827982895],"text":"","type":"scatter","mode":"lines","line":{"width":3.7795275590551185,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(153,153,153,0.4)","hoveron":"points","hoverinfo":"x+y","name":"Europe","legendgroup":"Europe","showlegend":false,"xaxis":"x","yaxis":"y","frame":null},{"x":[1272.4764289545387,2078.7340355552487,2884.9916421559592,3691.2492487566692,4497.5068553573801,5303.7644619580897,6110.0220685587992,6916.2796751595106,7722.5372817602201,8528.7948883609315,9335.0524949616411,10141.310101562351,10947.56770816306,11753.825314763772,12560.082921364481,13366.340527965192,14172.598134565902,14978.855741166612,15785.113347767323,16591.370954368034,17397.628560968744,18203.886167569453,19010.143774170163,19816.401380770872,20622.658987371582,21428.916593972295,22235.174200573005,23041.431807173714,23847.689413774424,24653.947020375133,25460.204626975847,26266.462233576556,27072.719840177266,27878.977446777975,28685.235053378685,29491.492659979398,30297.750266580108,31104.007873180817,31910.265479781527,32716.523086382236,33522.780692982953,34329.038299583663,35135.295906184372,35941.553512785082,36747.811119385791,37554.068725986501,38360.32633258721,39166.58393918792,39972.841545788629,40779.099152389346,41585.356758990056,42391.614365590765,43197.871972191475,44004.129578792184,44810.387185392894,45616.644791993604,46422.902398594313,47229.160005195023,48035.417611795732,48841.675218396449,49647.932824997159,50454.190431597868,51260.448038198578,52066.705644799287,52872.963251399997,53679.220858000706,54485.478464601416,55291.736071202125,56097.993677802835,56904.251284403545,57710.508891004261,58516.766497604971,59323.02410420568,60129.28171080639,60935.5393174071,61741.796924007809,62548.054530608519,63354.312137209228,64160.569743809938,64966.827350410647,64966.827350410647,64160.569743809938,63354.312137209228,62548.054530608519,61741.796924007809,60935.5393174071,60129.28171080639,59323.02410420568,58516.766497604971,57710.508891004261,56904.251284403545,56097.993677802835,55291.736071202125,54485.478464601416,53679.220858000706,52872.963251399997,52066.705644799287,51260.448038198578,50454.190431597868,49647.932824997159,48841.675218396449,48035.417611795732,47229.160005195023,46422.902398594313,45616.644791993604,44810.387185392894,44004.129578792184,43197.871972191475,42391.614365590765,41585.356758990056,40779.099152389346,39972.841545788629,39166.58393918792,38360.32633258721,37554.068725986501,36747.811119385791,35941.553512785082,35135.295906184372,34329.038299583663,33522.780692982953,32716.523086382236,31910.265479781527,31104.007873180817,30297.750266580108,29491.492659979398,28685.235053378685,27878.977446777975,27072.719840177266,26266.462233576556,25460.204626975847,24653.947020375133,23847.689413774424,23041.431807173714,22235.174200573005,21428.916593972295,20622.658987371582,19816.401380770872,19010.143774170163,18203.886167569453,17397.628560968744,16591.370954368034,15785.113347767323,14978.855741166612,14172.598134565902,13366.340527965192,12560.082921364481,11753.825314763772,10947.56770816306,10141.310101562351,9335.0524949616411,8528.7948883609315,7722.5372817602201,6916.2796751595106,6110.0220685587992,5303.7644619580897,4497.5068553573801,3691.2492487566692,2884.9916421559592,2078.7340355552487,1272.4764289545387,1272.4764289545387],"y":[69.849679617814019,70.020953874261238,70.190289034607773,70.357524392251506,70.522488810006749,70.685001416352307,70.844872794379384,71.001906757786841,71.15590279621911,71.306659245257919,71.453977191348102,71.597665057817466,71.737543737484174,71.873452047563063,72.005252196391766,72.132834885679216,72.256123644181812,72.375078012653802,72.489695280333066,72.600010602563103,72.706095487834602,72.808054803268931,72.906022582520805,73.000157008219276,73.090634973020158,73.177646602231036,73.26139005952119,73.342066872849614,73.419877927581297,73.495020191219979,73.567684167452626,73.638052029449298,73.70629635296693,73.772579355858738,73.837052548251265,73.899856703095082,73.961122066763011,74.020968741368051,74.079507182783317,74.136838769893373,74.193056410821512,74.248245160530828,74.302482831286795,74.355840583116517,74.408383485789173,74.460171047175947,74.511257705322748,74.561693283358878,74.611523407626549,74.660789890267154,74.709531078049736,74.757782169549657,74.805575502945544,74.852940816748088,74.89990548573995,74.946494734319813,74.992731829324384,75.038638254264526,75.084233866765743,75.129537040855837,75.1745647955983,75.219332911432474,75.26385603545198,75.308147776732355,75.352220792708508,75.39608686750114,75.439756982999285,75.48324138342312,75.526549634015993,75.569690674447273,75.612672867447088,75.6555040431397,75.698191539493791,75.740742239264819,75.783162603765447,75.825458703765634,75.8676362477932,75.909700608078126,75.951656844358723,75.993509725746634,86.425549406853662,86.230111649699268,86.03477724743756,85.839550969180181,85.644437874665442,85.449443336123323,85.254573062081647,85.059833123310369,84.865229981122155,84.670770518272434,84.476462072729944,84.282312474618919,84.088330086669487,83.894523848551017,83.700903325506857,83.507478761757184,83.314261139191032,83.121262241929102,82.928494727406303,82.735972204698172,82.54370932089833,82.351721856446119,82.16002683040503,81.968642616802867,81.777589073265133,81.586887683302692,81.396561713752249,81.206636389012488,81.01713908386607,80.828099536823686,80.639550086063963,80.451525930162262,80.264065415887629,80.077210355381453,79.891006374985921,79.705503297830418,79.52075556196074,79.336822675248158,79.153769707461819,78.971667818628831,78.790594821014665,78.610635769582416,78.431883572455376,78.254439608518112,78.078414333643735,77.903927849945248,77.731110403795469,77.560102768144972,77.391056453120299,77.224133676574667,77.059507014265009,76.897358639361386,76.737879055550763,76.581265230336882,76.427718049084731,76.277439039753304,76.130626366011882,75.987470153168047,75.848147293877616,75.71281597076964,75.581610217498834,75.454634901186537,75.331961530323497,75.213625260253181,75.099623380213473,74.989915430958618,74.884424941245015,74.7830426127816,74.685630653906003,74.592027881833062,74.50205518938094,74.415520999877444,74.332226399767407,74.251969724632559,74.174550464117331,74.099772431920584,74.027446211133523,73.957390930234951,73.88943545203918,73.823419069944094,69.849679617814019],"text":"","type":"scatter","mode":"lines","line":{"width":3.7795275590551185,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(153,153,153,0.4)","hoveron":"points","hoverinfo":"x+y","name":"North America","legendgroup":"North America","showlegend":false,"xaxis":"x","yaxis":"y","frame":null},{"x":[1649.57570191997,2325.5692952551258,3001.5628885902815,3677.5564819254378,4353.5500752605931,5029.5436685957493,5705.5372619309055,6381.5308552660608,7057.524448601217,7733.5180419363733,8409.5116352715286,9085.5052286066857,9761.498821941841,10437.492415276996,11113.486008612152,11789.479601947309,12465.473195282464,13141.466788617619,13817.460381952777,14493.453975287932,15169.447568623087,15845.441161958244,16521.434755293398,17197.428348628557,17873.421941963712,18549.415535298867,19225.409128634023,19901.402721969178,20577.396315304333,21253.389908639492,21929.383501974648,22605.377095309803,23281.370688644958,23957.364281980113,24633.357875315269,25309.351468650424,25985.345061985583,26661.338655320738,27337.332248655894,28013.325841991049,28689.319435326204,29365.31302866136,30041.306621996519,30717.300215331674,31393.293808666829,32069.287402001984,32745.28099533714,33421.274588672299,34097.26818200745,34773.261775342602,35449.255368677768,36125.24896201292,36801.242555348072,37477.236148683238,38153.22974201839,38829.223335353541,39505.216928688693,40181.210522023859,40857.204115359011,41533.197708694162,42209.191302029329,42885.18489536448,43561.178488699632,44237.172082034784,44913.16567536995,45589.159268705102,46265.152862040253,46941.146455375419,47617.140048710571,48293.133642045723,48969.127235380874,49645.120828716041,50321.114422051192,50997.108015386344,51673.10160872151,52349.095202056662,53025.088795391814,53701.08238872698,54377.075982062132,55053.069575397283,55053.069575397283,54377.075982062132,53701.08238872698,53025.088795391814,52349.095202056662,51673.10160872151,50997.108015386344,50321.114422051192,49645.120828716041,48969.127235380874,48293.133642045723,47617.140048710571,46941.146455375419,46265.152862040253,45589.159268705102,44913.16567536995,44237.172082034784,43561.178488699632,42885.18489536448,42209.191302029329,41533.197708694162,40857.204115359011,40181.210522023859,39505.216928688693,38829.223335353541,38153.22974201839,37477.236148683238,36801.242555348072,36125.24896201292,35449.255368677768,34773.261775342602,34097.26818200745,33421.274588672299,32745.28099533714,32069.287402001984,31393.293808666829,30717.300215331674,30041.306621996519,29365.31302866136,28689.319435326204,28013.325841991049,27337.332248655894,26661.338655320738,25985.345061985583,25309.351468650424,24633.357875315269,23957.364281980113,23281.370688644958,22605.377095309803,21929.383501974648,21253.389908639492,20577.396315304333,19901.402721969178,19225.409128634023,18549.415535298867,17873.421941963712,17197.428348628557,16521.434755293398,15845.441161958244,15169.447568623087,14493.453975287932,13817.460381952777,13141.466788617619,12465.473195282464,11789.479601947309,11113.486008612152,10437.492415276996,9761.498821941841,9085.5052286066857,8409.5116352715286,7733.5180419363733,7057.524448601217,6381.5308552660608,5705.5372619309055,5029.5436685957493,4353.5500752605931,3677.5564819254378,3001.5628885902815,2325.5692952551258,1649.57570191997,1649.57570191997],"y":[65.417240769148592,65.667906219521925,65.916246209913282,66.162140624172082,66.405468853879157,66.646111064623369,66.883949636151129,67.118870757703149,67.3507661479033,67.579534856039302,67.805085089542786,68.027336002241128,68.246219370915426,68.461681085162851,68.673682378504751,68.882200737530212,69.087230440340491,69.288782694627244,69.486885367682035,69.681582323362406,69.872932402282373,70.061008099229355,70.245894004536169,70.42768508306186,70.60648486552239,70.782403622787172,70.955556585528711,71.126062260642371,71.294040883527259,71.459613032877783,71.622898423052121,71.784014879022507,71.943077490733614,72.100197937501989,72.255483968790671,72.409039025070413,72.560961981246379,72.711346994983757,72.860283442913897,73.007855928889242,73.154144349965122,73.299224007453546,73.443165752091772,73.586036154011097,73.727897689721161,73.868808939709609,74.008824791482652,74.147996643934206,74.28637260983929,74.423997714030179,74.560914085447266,74.697161141775467,74.832775765797123,74.967792472927357,75.102243569662477,75.236159302877311,75.369568000062856,75.502496200713182,75.634968779154221,75.767009059165986,75.898638920788201,76.02987889972151,76.160748279746841,76.291265178585718,76.421446627618337,76.55130864586485,76.680866308619741,76.810133811112223,76.939124527546042,77.067851065852608,77.196325318471168,77.324558509449432,77.452561238139168,77.580343519741902,77.707914822941731,77.835284104845755,77.962459843435354,78.089450067717451,78.216262385749403,78.342904010698817,null,89.971723527391603,89.683855697200556,89.396165773259654,89.108661363626254,88.82135049730725,88.534241652284081,88.247343785663816,87.960666366130553,87.67421940888579,87.388013513281351,87.102059903364918,86.816370471575738,86.530957825845221,86.245835340377113,85.961017210400627,85.676518511210219,85.392355261826097,85.108544493628429,84.825104324338739,84.542054037737927,84.259414169526693,83.977206599744733,83.69545465217206,83.414183201134605,83.133418786126441,82.853189734638562,82.573526293545768,82.294460769344425,82.016027677449628,81.738263900643688,81.461208856611577,81.184904674293662,80.909396378522217,80.634732082072262,80.360963183837711,80.088144571324747,79.816334825021073,79.545596421436301,79.275995930701725,79.007604203554607,78.740496541306925,78.474752841014066,78.210457706528445,77.947700514481411,77.686575422538155,77.427181305603838,77.169621604149185,76.914004067637293,76.660440375384681,76.40904561733602,76.159937618463516,75.913236093125406,75.669061620016066,75.427534434534607,75.18877304357639,74.952892677813921,74.720003608116585,74.4902093652004,74.263604913924382,74.040274844621351,73.820291652078723,73.603714176910486,73.39058628297424,73.18093583756152,72.974774048363983,72.772095193482883,72.572876759507309,72.37707997995858,72.184650744433924,71.995520829714408,71.809609389627411,71.626824631604563,71.447065604933556,71.270224028238317,71.096186090759531,70.924834172243607,70.756048438279407,70.589708280447738,70.425693582598072,65.417240769148592],"text":"","type":"scatter","mode":"lines","line":{"width":3.7795275590551185,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(153,153,153,0.4)","hoveron":"points","hoverinfo":"x+y","name":"Oceania","legendgroup":"Oceania","showlegend":false,"xaxis":"x","yaxis":"y","frame":null},{"x":[10626.175951543732,10712.48134679883,10798.78674205393,10885.092137309028,10971.397532564128,11057.702927819226,11144.008323074326,11230.313718329424,11316.619113584522,11402.924508839622,11489.22990409472,11575.53529934982,11661.840694604918,11748.146089860016,11834.451485115116,11920.756880370214,12007.062275625314,12093.367670880412,12179.67306613551,12265.97846139061,12352.283856645709,12438.589251900808,12524.894647155907,12611.200042411005,12697.505437666105,12783.810832921203,12870.116228176303,12956.421623431401,13042.727018686499,13129.032413941599,13215.337809196699,13301.643204451797,13387.948599706895,13474.253994961995,13560.559390217093,13646.864785472193,13733.170180727291,13819.475575982389,13905.780971237489,13992.086366492587,14078.391761747687,14164.697157002785,14251.002552257884,14337.307947512983,14423.613342768082,14509.918738023182,14596.22413327828,14682.529528533378,14768.834923788478,14855.140319043578,14941.445714298676,15027.751109553774,15114.056504808872,15200.361900063972,15286.667295319072,15372.97269057417,15459.278085829268,15545.583481084366,15631.888876339466,15718.194271594566,15804.499666849664,15890.805062104762,15977.11045735986,16063.41585261496,16149.72124787006,16236.026643125158,16322.332038380257,16408.637433635355,16494.942828890453,16581.248224145555,16667.553619400653,16753.859014655751,16840.164409910853,16926.469805165951,17012.775200421049,17099.080595676147,17185.385990931245,17271.691386186343,17357.996781441445,17444.302176696543,17444.302176696543,17357.996781441445,17271.691386186343,17185.385990931245,17099.080595676147,17012.775200421049,16926.469805165951,16840.164409910853,16753.859014655751,16667.553619400653,16581.248224145555,16494.942828890453,16408.637433635355,16322.332038380257,16236.026643125158,16149.72124787006,16063.41585261496,15977.11045735986,15890.805062104762,15804.499666849664,15718.194271594566,15631.888876339466,15545.583481084366,15459.278085829268,15372.97269057417,15286.667295319072,15200.361900063972,15114.056504808872,15027.751109553774,14941.445714298676,14855.140319043578,14768.834923788478,14682.529528533378,14596.22413327828,14509.918738023182,14423.613342768082,14337.307947512983,14251.002552257884,14164.697157002785,14078.391761747687,13992.086366492587,13905.780971237489,13819.475575982389,13733.170180727291,13646.864785472193,13560.559390217093,13474.253994961995,13387.948599706895,13301.643204451797,13215.337809196699,13129.032413941599,13042.727018686499,12956.421623431401,12870.116228176303,12783.810832921203,12697.505437666105,12611.200042411005,12524.894647155907,12438.589251900808,12352.283856645709,12265.97846139061,12179.67306613551,12093.367670880412,12007.062275625314,11920.756880370214,11834.451485115116,11748.146089860016,11661.840694604918,11575.53529934982,11489.22990409472,11402.924508839622,11316.619113584522,11230.313718329424,11144.008323074326,11057.702927819226,10971.397532564128,10885.092137309028,10798.78674205393,10712.48134679883,10626.175951543732,10626.175951543732],"y":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"text":"","type":"scatter","mode":"lines","line":{"width":3.7795275590551185,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(153,153,153,0.4)","hoveron":"points","hoverinfo":"x+y","name":"Seven seas (open ocean)","legendgroup":"Seven seas (open ocean)","showlegend":false,"xaxis":"x","yaxis":"y","frame":null},{"x":[3552.0407188333288,3721.1982068832167,3890.3556949331046,4059.5131829829925,4228.6706710328808,4397.8281590827683,4566.9856471326566,4736.1431351825449,4905.3006232324324,5074.4581112823198,5243.6155993322081,5412.7730873820965,5581.9305754319839,5751.0880634818723,5920.2455515317597,6089.403039581648,6258.5605276315364,6427.7180156814238,6596.8755037313113,6766.0329917811996,6935.1904798310879,7104.3479678809763,7273.5054559308637,7442.6629439807512,7611.8204320306395,7780.9779200805278,7950.1354081304162,8119.2928961803027,8288.450384230191,8457.6078722800794,8626.7653603299677,8795.9228483798543,8965.0803364297426,9134.2378244796309,9303.3953125295193,9472.5528005794076,9641.7102886292942,9810.8677766791825,9980.0252647290708,10149.182752778959,10318.340240828846,10487.497728878734,10656.655216928622,10825.812704978511,10994.970193028399,11164.127681078286,11333.285169128174,11502.442657178062,11671.600145227951,11840.757633277837,12009.915121327726,12179.072609377614,12348.230097427502,12517.387585477389,12686.545073527277,12855.702561577165,13024.860049627054,13194.017537676942,13363.175025726829,13532.332513776717,13701.490001826605,13870.647489876494,14039.80497792638,14208.962465976269,14378.119954026157,14547.277442076045,14716.434930125934,14885.59241817582,15054.749906225708,15223.907394275597,15393.064882325485,15562.222370375372,15731.37985842526,15900.537346475148,16069.694834525037,16238.852322574925,16408.009810624812,16577.1672986747,16746.324786724588,16915.482274774477,16915.482274774477,16746.324786724588,16577.1672986747,16408.009810624812,16238.852322574925,16069.694834525037,15900.537346475148,15731.37985842526,15562.222370375372,15393.064882325485,15223.907394275597,15054.749906225708,14885.59241817582,14716.434930125934,14547.277442076045,14378.119954026157,14208.962465976269,14039.80497792638,13870.647489876494,13701.490001826605,13532.332513776717,13363.175025726829,13194.017537676942,13024.860049627054,12855.702561577165,12686.545073527277,12517.387585477389,12348.230097427502,12179.072609377614,12009.915121327726,11840.757633277837,11671.600145227951,11502.442657178062,11333.285169128174,11164.127681078286,10994.970193028399,10825.812704978511,10656.655216928622,10487.497728878734,10318.340240828846,10149.182752778959,9980.0252647290708,9810.8677766791825,9641.7102886292942,9472.5528005794076,9303.3953125295193,9134.2378244796309,8965.0803364297426,8795.9228483798543,8626.7653603299677,8457.6078722800794,8288.450384230191,8119.2928961803027,7950.1354081304162,7780.9779200805278,7611.8204320306395,7442.6629439807512,7273.5054559308637,7104.3479678809763,6935.1904798310879,6766.0329917811996,6596.8755037313113,6427.7180156814238,6258.5605276315364,6089.403039581648,5920.2455515317597,5751.0880634818723,5581.9305754319839,5412.7730873820965,5243.6155993322081,5074.4581112823198,4905.3006232324324,4736.1431351825449,4566.9856471326566,4397.8281590827683,4228.6706710328808,4059.5131829829925,3890.3556949331046,3721.1982068832167,3552.0407188333288,3552.0407188333288],"y":[65.678243612122913,65.850956392503591,66.022653365441826,66.19327416322534,66.362754464145013,66.531025777214282,66.698015231103298,66.863645372101502,67.027833977058151,67.190493888540047,67.35153288087713,67.510853567321675,67.66835336017769,67.823924497402515,67.977454150740911,68.128824631792256,68.277913713359141,68.424595083766263,68.568738951323098,68.710212814454806,68.848882409968809,68.984612847209746,69.117269929313281,69.246721654357714,69.372839879078867,69.495502116347708,69.614593425476073,69.730008342551699,69.841652787574375,69.949445877449875,70.053321570138024,70.153230066445673,70.249138902667866,70.341033679477874,70.428918389442771,70.512815325951678,70.592764578361866,70.668823139735366,70.741063672661355,70.809572993693976,70.874450346802263,70.935805540515986,70.993757022398597,71.048429958862741,71.099954379293237,71.148463432237705,71.19409178931221,71.236974220525369,71.27724435377047,71.315033621816156,71.350470392518432,71.383679272241181,71.414780568502849,71.443889895452671,71.471117904657319,71.496570123566826,71.520346884661237,71.542543329421164,71.563249472719434,71.582550314840674,71.600525989985456,71.617251941719786,71.632799117336177,71.647234174464657,71.660619694495139,71.673014398443129,71.684473361811001,71.695048225779615,71.704787402718949,71.713736274548765,71.721937382923059,71.729430610570049,71.736253353405147,71.742440683258948,71.74802550123708,71.753038681860389,71.757509208233017,71.761464298556817,71.76492952435872,71.767928920829718,82.688088286147575,82.505557719079448,82.323492981342227,82.141918108126902,81.960858670960405,81.780341888044589,81.600396742483596,81.421054108798273,81.242346888094218,81.064310152202083,80.886981297037252,80.710400205327943,80.534609418728152,80.359654319157642,80.185583318986389,80.012448059395254,79.840303615886612,79.669208709475967,79.499225921553233,79.330421909748438,79.162867621354067,78.996638499936182,78.831814679695327,78.66848116091613,78.506727958471416,78.346650213841798,78.188348259507322,78.031927622918019,77.877498955640561,77.725177871824187,77.575084678987309,77.42734398349387,77.282084153199847,77.13943662087388,76.999535014409261,76.862514103814604,76.728508560705976,76.597651533630994,76.470073051974481,76.345898282149079,76.225245671718241,76.10822502921171,75.994935598598573,75.885464196432949,75.779883485304012,75.678250458273794,75.580605204699566,75.486970017970449,75.397348890653518,75.311727423422042,75.230073152571066,75.152336278907413,75.078450760390965,75.008335713927465,74.941897059516705,74.879029333246422,74.819617594428451,74.763539355933759,74.710666474498169,74.660866948199981,74.614006580174859,74.569950479767442,74.528564383785124,74.489715790653122,74.453274908680882,74.419115426193102,74.387115115992373,74.357156289678073,74.329126118994964,74.302916841900384,74.278425870698342,74.255555818641113,74.234214460058638,74.214314637517688,74.19577412786758,74.178515477397724,74.162465814778272,74.147556649022661,74.133723658421772,74.120906475263325,65.678243612122913],"text":"","type":"scatter","mode":"lines","line":{"width":3.7795275590551185,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(153,153,153,0.4)","hoveron":"points","hoverinfo":"x+y","name":"South America","legendgroup":"South America","showlegend":false,"xaxis":"x","yaxis":"y","frame":null}],"layout":{"margin":{"t":53.858032378580326,"r":13.283520132835205,"b":38.522208385222093,"l":35.865504358655052},"plot_bgcolor":"transparent","paper_bgcolor":"rgba(213,228,235,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"<b> PIB per cápita vs esperanza de vida al nacer <\/b>","font":{"color":"rgba(0,0,0,1)","family":"","size":21.917808219178081},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-10000,210000],"tickmode":"array","ticktext":["0","50,000","100,000","150,000","200,000"],"tickvals":[0,49999.999999999993,100000,150000,200000],"categoryorder":"array","categoryarray":["0","50,000","100,000","150,000","200,000"],"nticks":null,"ticks":"outside","tickcolor":"rgba(0,0,0,1)","ticklen":-6.6417600664175991,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.53134080531340799,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y","title":{"text":"PIB per cápita (USD)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[48,92],"tickmode":"array","ticktext":["50","60","70","80","90"],"tickvals":[50,60,70,80,90],"categoryorder":"array","categoryarray":["50","60","70","80","90"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":-6.6417600664176026,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":1.16230801162308,"zeroline":false,"anchor":"x","title":{"text":"Esperanza de vida (años)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","layer":"below","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"transparent","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":18.264840182648406},"title":{"text":"Continente","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false,"locale":"es"},"source":"A","attrs":{"45c07c712c2":{"x":{},"y":{},"colour":{},"text":{},"type":"scatter"},"45c071cf59a2":{"x":{},"y":{},"colour":{}}},"cur_data":"45c07c712c2","visdat":{"45c07c712c2":["function (y) ","x"],"45c071cf59a2":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
